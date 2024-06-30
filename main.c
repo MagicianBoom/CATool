@@ -246,7 +246,7 @@ static int handle_command(void)
     }
 
     printf("%s: catool command not found...\n", argv[0]);
-    printf("Start to find system command to process...\n", argv[0]);
+    printf("%s: Start to find system command to process...\n", argv[0]);
 
     ret = system_cmd();
 
