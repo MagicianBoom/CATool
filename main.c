@@ -10,6 +10,8 @@
 #include "catool.h"
 
 static struct catool_info catool = {
+    .cmd_buffer = {'\0'},
+    .cmd_history = {'\0'},
     .cmd_idx = 0,
     .cmd_history_nums = 0,
     .cmd_length = 0,
