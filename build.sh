@@ -2,10 +2,10 @@
 
 set -e
 
-LY_TOOL_ROOT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-BUILD_DIR="$LY_TOOL_ROOT_DIR/obj"
-CONFIG_FILE="$LY_TOOL_ROOT_DIR/catool.conf"
-CONFIG_INC_FILE="$LY_TOOL_ROOT_DIR/catool_conf.h"
+CA_TOOL_ROOT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+BUILD_DIR="$CA_TOOL_ROOT_DIR/obj"
+CONFIG_FILE="$CA_TOOL_ROOT_DIR/catool.conf"
+CONFIG_INC_FILE="$CA_TOOL_ROOT_DIR/catool_conf.h"
 
 function cfg_to_inc()
 {
@@ -29,28 +29,28 @@ function cfg_to_inc()
 
 function build_kernel_module()
 {
-    if [ -f "$LY_TOOL_ROOT_DIR/catool.ko" ]; then
-        rm $LY_TOOL_ROOT_DIR/catool.ko
+    if [ -f "$CA_TOOL_ROOT_DIR/catool.ko" ]; then
+        rm $CA_TOOL_ROOT_DIR/catool.ko
     fi
 
-    cd $LY_TOOL_ROOT_DIR/kernel_module
+    cd $CA_TOOL_ROOT_DIR/kernel_module
     make -s
-    cp catool.ko $LY_TOOL_ROOT_DIR
+    cp catool.ko $CA_TOOL_ROOT_DIR
     make -s clean
 }
 
 function build_catool()
 {
-    cd $LY_TOOL_ROOT_DIR
+    cd $CA_TOOL_ROOT_DIR
 
     cfg_to_inc
 
-    if [ -f "$LY_TOOL_ROOT_DIR/catool" ]; then
-        rm $LY_TOOL_ROOT_DIR/catool
+    if [ -f "$CA_TOOL_ROOT_DIR/catool" ]; then
+        rm $CA_TOOL_ROOT_DIR/catool
     fi
 
     make -s
-    cp $BUILD_DIR/catool $LY_TOOL_ROOT_DIR
+    cp $BUILD_DIR/catool $CA_TOOL_ROOT_DIR
     make -s clean
 }
 
@@ -59,20 +59,20 @@ function build()
     # build_kernel_module
     build_catool
     echo ""
-    echo "Generate the catool.ko in the $LY_TOOL_ROOT_DIR/catool.ko"
-    echo "Generate the catool in the $LY_TOOL_ROOT_DIR/catool"
+    echo "Generate the catool.ko in the $CA_TOOL_ROOT_DIR/catool.ko"
+    echo "Generate the catool in the $CA_TOOL_ROOT_DIR/catool"
 }
 
 function clean()
 {
-    cd $LY_TOOL_ROOT_DIR
+    cd $CA_TOOL_ROOT_DIR
 
-    if [ -f "$LY_TOOL_ROOT_DIR/catool" ]; then
-        rm $LY_TOOL_ROOT_DIR/catool
+    if [ -f "$CA_TOOL_ROOT_DIR/catool" ]; then
+        rm $CA_TOOL_ROOT_DIR/catool
     fi
 
-    if [ -f "$LY_TOOL_ROOT_DIR/catool.ko" ]; then
-        rm $LY_TOOL_ROOT_DIR/catool.ko
+    if [ -f "$CA_TOOL_ROOT_DIR/catool.ko" ]; then
+        rm $CA_TOOL_ROOT_DIR/catool.ko
     fi
 }
 
