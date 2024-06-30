@@ -27,7 +27,7 @@ int new_cmd(int argc, char *argv[])
 
 ### 编译
 
-你可以通过以下步骤来编译 CATool：
+你可以通过以下步骤来编译 CATool，请不要直接使用make来进行编译，因为还需要额外配置一些环境：
 
 ```bash
 cd CATool
