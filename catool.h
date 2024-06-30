@@ -3,7 +3,7 @@
 
 typedef struct {
     char *name;
-    int (*func)(int, char **);
+    int (*func)(int, char *[]);
     char *help_info;
 } command;
 

@@ -40,7 +40,7 @@ int exit_pcietool(int argc, char *argv[])
 
 int hello_world(int argc, char *argv[])
 {
-    printf("hello world\n");
+    printf("Hello, this is CATool, have a nice day!\n");
     return 0;
 }
 

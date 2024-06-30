@@ -4,41 +4,49 @@ CATool 是一个用 C 语言编写的工具，旨在将多个自定义命令集�
 
 ## 特性
 
-- **命令集合**：将多个命令行命令集合到一个工具中，简化操作。
-- **高效执行**：使用 C 语言编写，确保高效的性能和快速的执行速度。
-- **易于使用**：提供简单的命令行界面，方便用户使用和管理。
+- 命令集合：将多个自定义命令行命令集合到一个工具中，简化操作。
+- 高效执行：使用 C 语言编写，确保高效的性能和快速的执行速度。
+- 易于使用：提供简单的命令行界面，方便用户使用。
+  - 支持命令行回溯
+  - 支持系统命令如pwd、ls等命令调用
+  - 快速增加自定义命令
 
-## 安装
+## 教程
+### 增加命令
+1. 获取本项目
+git clone https://github.com/MagicianBoom/CATool.git
 
-你可以通过以下步骤来安装 CATool：
+2. 实现新命令主入口函数：
+```
+int new_cmd(int argc, char *argv[])
+```
+3. 在catool.h头文件的`command commands[]`中加入`new_cmd`
+```
+{"new_cmd", new_cmd,   "help_info"  },
+```
+
+### 编译
+
+你可以通过以下步骤来编译 CATool：
 
 ```bash
-git clone https://github.com/MagicianBoom/CATool.git
 cd CATool
 ./build.sh
 ```
+生成的工具为CATool/catool
 
-## 使用方法
+### 使用方法
 
-安装完成后，你可以通过以下命令来使用 CATool：
+编译完成后，你可以通过以下命令来使用 CATool：
 
 ```bash
 ./catool
 > help
+> hello_world
 ```
-### 示例
 
-以下是一些使用 CATool 的示例：
-
-```bash
-# 列出所有支持的命令
-./catool
-> help
-
-# 执行一个特定命令
-./catool
-> hello
-```
+### 修改配置参数
+通过修改catool_conf文件内容来对参数进行配置。
 
 ## 贡献
 
