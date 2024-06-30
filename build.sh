@@ -93,7 +93,7 @@ function onCtrlC () {
         exit 1
 }
 
-progress() {
+function progress() {
         #进度条程序
         local main_pid=$1
         local length=50

@@ -38,6 +38,12 @@ int exit_pcietool(int argc, char *argv[])
     exit(0);
 }
 
+int hello_world(int argc, char *argv[])
+{
+    printf("hello world\n");
+    return 0;
+}
+
 static void disable_raw_mode(void)
 {
     tcsetattr(STDIN_FILENO, TCSAFLUSH, &catool.orig_termios);
