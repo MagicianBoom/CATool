@@ -5,11 +5,6 @@
 
 #include "catool_conf.h"
 
-#define LYMT_IOCTRL_DEV_NAME "/sys/kernel/debug/lymt_host/lymt_ioctl_host"
-
-#define LYMT_OK              0
-#define LYMT_ERR             -1
-
 typedef unsigned long long int u64;
 typedef signed long long int s64;
 

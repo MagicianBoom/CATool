@@ -15,7 +15,6 @@ function cfg_to_inc()
     echo "#define __CATOOL_CONF_H" >> $CONFIG_INC_FILE
     echo "" >> $CONFIG_INC_FILE
 
-    # 读取配置文件并生成宏定义
     while IFS='=' read -r key value; do
         if [[ -n "$key" && ! "$key" =~ ^# ]]; then
             key=$(echo -n "$key" | xargs)
@@ -88,7 +87,6 @@ function help()
 
 trap 'onCtrlC' INT
 function onCtrlC () {
-        #捕获CTRL+C，当脚本被ctrl+c的形式终止时同时终止程序的后台进程
         kill -9 ${do_sth_pid} ${progress_pid}
         echo
         echo 'Ctrl+C is captured'
