@@ -380,10 +380,14 @@ static void parse_and_execute(void)
         } else if (c == 27) { // Arrow keys (and other escape sequences)
             catool.tab_sucess_flag = 0;
             char seq[3];
-            if (read(STDIN_FILENO, &seq[0], 1) == 0)
+            if (read(STDIN_FILENO, &seq[0], 1) == 0) {
                 continue;
-            if (read(STDIN_FILENO, &seq[1], 1) == 0)
+            }
+
+            if (read(STDIN_FILENO, &seq[1], 1) == 0) {
                 continue;
+            }
+
             if (seq[0] == '[') {
                 if (seq[1] == '3' && read(STDIN_FILENO, &seq[2], 1) == 1 && seq[2] == '~') {
                     handle_delete(catool.cmd_buffer, &catool.cmd_length, catool.now_cursor);

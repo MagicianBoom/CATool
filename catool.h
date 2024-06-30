@@ -16,6 +16,9 @@ command commands[] = {
     {"exit",        exit_pcietool, NULL  },
     {"quit",        exit_pcietool, NULL  },
     {"hello_world", hello_world,   NULL  },
+    /* Add your command after here! */
+
+    /* End! */
     {NULL,          NULL,          NULL  },
 };
 
