@@ -29,11 +29,11 @@ function cfg_to_inc()
 
 function build_kernel_module()
 {
+    local CATOOL_KERNEL_MODULE=$(grep -E "^CATOOL_KERNEL_MODULE=" "$CONFIG_FILE" | cut -d '=' -f 2)
+
     if [ -f "$CA_TOOL_ROOT_DIR/catool.ko" ]; then
         rm $CA_TOOL_ROOT_DIR/catool.ko
     fi
-
-    local CATOOL_KERNEL_MODULE=$(grep -E "^CATOOL_KERNEL_MODULE=" "$CONFIG_FILE" | cut -d '=' -f 2)
 
     if [ "$CATOOL_KERNEL_MODULE" == "y" ]; then
         cd $CA_TOOL_ROOT_DIR/kernel_module
