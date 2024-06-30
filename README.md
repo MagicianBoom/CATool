@@ -46,7 +46,7 @@ cd CATool
 ```
 
 ### 修改配置参数
-通过修改catool_conf文件内容来对参数进行配置。
+通过修改'catool_conf'而不是'catool_conf.h'文件内容来对参数进行配置。
 
 ## 贡献
 
