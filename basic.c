@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "common.h"
+#include "catool.h"
 
 extern command commands[];
 

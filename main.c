@@ -6,7 +6,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include "common.h"
+#include "catool.h"
 
 extern int help(int argc, char *argv[]);
 extern int exit_pcietool(int argc, char *argv[]);

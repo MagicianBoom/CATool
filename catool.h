@@ -1,5 +1,5 @@
-#ifndef __COMMON_H
-#define __COMMON_H
+#ifndef __CATOOL_H
+#define __CATOOL_H
 
 #include <termios.h>
 
@@ -29,8 +29,7 @@ struct catool_info {
     u32 tab_sucess_flag;
 };
 
-typedef struct
-{
+typedef struct {
     char *name;
     int (*func)(int, char **);
     char *help_info;
