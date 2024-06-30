@@ -6,19 +6,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include "basic.h"
 #include "catool.h"
-
-extern int help(int argc, char *argv[]);
-extern int exit_pcietool(int argc, char *argv[]);
-extern int ly_test(int argc, char *argv[]);
-
-command commands[] = {
-    {"help",            help,            "help"                                              },
-    {"exit",            exit_pcietool,   NULL                                                },
-    {"quit",            exit_pcietool,   NULL                                                },
-    {"ly_test",         ly_test,         NULL                                                },
-    {NULL,              NULL,            NULL                                                },
-};
 
 static struct catool_info catool = {
     .cmd_idx = 0,
@@ -28,6 +17,24 @@ static struct catool_info catool = {
     .tab_sucess_flag = 0,
     .cmd_idx_history = 0,
 };
+
+int help(int argc, char *argv[])
+{
+    printf("Available commands:\n");
+    for (int i = 0; commands[i].name != NULL; i++) {
+        if (commands[i].help_info) {
+            printf("  %-20s %s\n", commands[i].name, commands[i].help_info);
+        } else {
+            printf("  %-20s\n", commands[i].name);
+        }
+    }
+}
+
+int exit_pcietool(int argc, char *argv[])
+{
+    printf("======================== COMMAND AGGREGATOR TOOL BYE! ========================\n");
+    exit(0);
+}
 
 static void disable_raw_mode(void)
 {

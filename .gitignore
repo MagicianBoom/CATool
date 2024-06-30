@@ -54,3 +54,4 @@ dkms.conf
 # private
 catool_conf.h
 catool
+settings.json
