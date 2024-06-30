@@ -33,10 +33,14 @@ function build_kernel_module()
         rm $CA_TOOL_ROOT_DIR/catool.ko
     fi
 
-    cd $CA_TOOL_ROOT_DIR/kernel_module
-    make -s
-    cp catool.ko $CA_TOOL_ROOT_DIR
-    make -s clean
+    local CATOOL_KERNEL_MODULE=$(grep -E "^CATOOL_KERNEL_MODULE=" "$CONFIG_FILE" | cut -d '=' -f 2)
+
+    if [ "$CATOOL_KERNEL_MODULE" == "y" ]; then
+        cd $CA_TOOL_ROOT_DIR/kernel_module
+        make -s
+        cp catool.ko $CA_TOOL_ROOT_DIR
+        make -s clean
+    fi
 }
 
 function build_catool()
@@ -56,7 +60,7 @@ function build_catool()
 
 function build()
 {
-    # build_kernel_module
+    build_kernel_module
     build_catool
     echo ""
     echo "Generate the catool.ko in the $CA_TOOL_ROOT_DIR/catool.ko"
