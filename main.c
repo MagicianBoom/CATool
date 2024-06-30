@@ -32,7 +32,7 @@ int help(int argc, char *argv[])
     }
 }
 
-int exit_pcietool(int argc, char *argv[])
+int exit_catool(int argc, char *argv[])
 {
     printf("======================== COMMAND AGGREGATOR TOOL BYE! ========================\n");
     exit(0);
@@ -368,7 +368,7 @@ static void parse_and_execute(void)
         } else if (c == '\n') { // Enter key
             printf("\n");
             if (strcmp(catool.cmd_buffer, "exit") == 0) {
-                exit_pcietool(0, NULL);
+                exit_catool(0, NULL);
                 break;
             }
 

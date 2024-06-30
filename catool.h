@@ -8,18 +8,18 @@ typedef struct {
 } command;
 
 extern int help(int argc, char *argv[]);
-extern int exit_pcietool(int argc, char *argv[]);
+extern int exit_catool(int argc, char *argv[]);
 extern int hello_world(int argc, char *argv[]);
 
 command commands[] = {
-    {"help",        help,          "help"},
-    {"exit",        exit_pcietool, NULL  },
-    {"quit",        exit_pcietool, NULL  },
-    {"hello_world", hello_world,   NULL  },
+    {"help",        help,        "help"},
+    {"exit",        exit_catool, NULL  },
+    {"quit",        exit_catool, NULL  },
+    {"hello_world", hello_world, NULL  },
     /* Add your command after here! */
 
     /* End! */
-    {NULL,          NULL,          NULL  },
+    {NULL,          NULL,        NULL  },
 };
 
 #endif
