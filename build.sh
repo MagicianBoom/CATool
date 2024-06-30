@@ -19,7 +19,7 @@ function cfg_to_inc()
         if [[ -n "$key" && ! "$key" =~ ^# ]]; then
             key=$(echo -n "$key" | xargs)
             value=$(echo -n "$value" | xargs)
-            echo "#define $key ($value)" >> $CONFIG_INC_FILE
+            echo "#define $key $value" >> $CONFIG_INC_FILE
         fi
     done < $CONFIG_FILE
 

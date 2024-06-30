@@ -30,4 +30,7 @@ struct catool_info {
     u32 tab_sucess_flag;
 };
 
+#define TO_STR(def)  #def
+#define DEFINE_2_STR(def)  TO_STR(def)
+
 #endif
