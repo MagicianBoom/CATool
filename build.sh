@@ -7,7 +7,7 @@ BUILD_DIR="$CA_TOOL_ROOT_DIR/obj"
 CONFIG_FILE="$CA_TOOL_ROOT_DIR/catool.conf"
 CONFIG_INC_FILE="$CA_TOOL_ROOT_DIR/catool_conf.h"
 
-function cfg_to_inc()
+cfg_to_inc()
 {
     echo "" > $CONFIG_INC_FILE
 
@@ -27,7 +27,7 @@ function cfg_to_inc()
     echo "#endif" >> $CONFIG_INC_FILE
 }
 
-function build_kernel_module()
+build_kernel_module()
 {
     local CATOOL_KERNEL_MODULE=$(grep -E "^CATOOL_KERNEL_MODULE=" "$CONFIG_FILE" | cut -d '=' -f 2)
 
@@ -43,7 +43,7 @@ function build_kernel_module()
     fi
 }
 
-function build_catool()
+build_catool()
 {
     cd $CA_TOOL_ROOT_DIR
 
@@ -58,16 +58,49 @@ function build_catool()
     make -s clean
 }
 
-function build()
+mv_catool_to_sys()
+{
+    if [[ -d "/usr/local/bin" ]]; then
+        local bin_target_dir=/usr/local/bin
+    elif [[ -d "/usr/bin" ]]; then
+        local bin_target_dir=/usr/bin
+    fi
+
+    if [[ -d "/usr/local/sbin" ]]; then
+        local sbin_target_dir=/usr/local/sbin
+    elif [[-d "/usr/sbin" ]]; then
+        local sbin_target_dir=/usr/sbin
+    fi
+
+    if [[ -n "${bin_target_dir}" ]]; then
+        if [[ -f "${bin_target_dir}/catool" ]]; then
+            rm ${bin_target_dir}/catool
+        fi
+
+        ln -s $CA_TOOL_ROOT_DIR/catool ${bin_target_dir}/catool
+        echo "Create a catool software link to ${bin_target_dir}"
+    fi
+
+    if [[ -n "${sbin_target_dir}" ]]; then
+        if [[ -f "${sbin_target_dir}/catool" ]]; then
+            rm ${sbin_target_dir}/catool
+        fi
+
+        ln -s $CA_TOOL_ROOT_DIR/catool ${sbin_target_dir}/catool
+        echo "Create a catool software link to ${sbin_target_dir}"
+    fi
+}
+
+build()
 {
     build_kernel_module
     build_catool
     echo ""
-    echo "Generate the catool.ko in the $CA_TOOL_ROOT_DIR/catool.ko"
-    echo "Generate the catool in the $CA_TOOL_ROOT_DIR/catool"
+    echo "Generate the files 'catool' and 'catool.ko' (if available) in the project root directory [$CA_TOOL_ROOT_DIR]."
+    mv_catool_to_sys
 }
 
-function clean()
+clean()
 {
     cd $CA_TOOL_ROOT_DIR
 
@@ -80,7 +113,7 @@ function clean()
     fi
 }
 
-function help()
+help()
 {
     echo "USAGE:"
     echo "  ./build_run.sh                      build catool"
@@ -90,14 +123,14 @@ function help()
 
 
 trap 'onCtrlC' INT
-function onCtrlC () {
+onCtrlC () {
         kill -9 ${do_sth_pid} ${progress_pid}
         echo
         echo 'Ctrl+C is captured'
         exit 1
 }
 
-function progress() {
+progress() {
         #进度条程序
         local main_pid=$1
         local length=50
@@ -120,7 +153,7 @@ function progress() {
         done
 }
 
-function main()
+main()
 {
     CMD=$1
 
