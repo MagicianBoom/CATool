@@ -373,7 +373,7 @@ static void parse_and_execute(void)
             }
 
             handle_enter();
-        } else if (c == 127) { // Backspace key
+        } else if (c == 127 || c == 8) { // Backspace key
             handle_backspace(catool.cmd_buffer, &catool.cmd_length);
         } else if (c == '\t') { // Tab key
             handle_tab_completion(catool.cmd_buffer, &catool.cmd_length);
